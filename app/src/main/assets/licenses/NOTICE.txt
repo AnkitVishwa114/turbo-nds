@@ -1,0 +1,21 @@
+Turbo NDS for Android
+Copyright AppKraft Studio. Distributed under GPL-3.0-or-later (see GPL-3.0.txt).
+Complete corresponding source: https://github.com/AnkitVishwa114/turbo-nds (also linked from https://turbonds.site/source/)
+
+LibretroDroid 0.13.2
+Copyright Filippo Scognamiglio and contributors. GPL-3.0-or-later.
+https://github.com/Swordfish90/LibretroDroid/tree/0.13.2
+
+melonDS DS (libretro core)
+Copyright Jesse Talavera, the melonDS team and contributors. GPL-3.0-or-later.
+https://github.com/JesseTG/melonds-ds
+Includes emulation based on melonDS. Uses the core's built-in replacement system files.
+
+No console BIOS, firmware or game is included with this app.
+
+AndroidX and Material components: Apache-2.0.
+Kotlin and kotlinx.coroutines: Apache-2.0.
+Apache Commons Compress: Apache-2.0.
+XZ for Java: 0BSD.
+Google Mobile Ads SDK, User Messaging Platform and Play Core libraries: Google terms.
+Outfit font: SIL Open Font License 1.1 (Outfit-OFL.txt).

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TurboNDS" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+
+    <style name="Theme.TurboNDS.Player">
+        <item name="android:windowBackground">#000000</item>
+    </style>
+
+    <!--
+        Google's full-screen ad screen is translucent and, edge-to-edge, leaves the status and
+        navigation bar strips empty, so the app showed through above the ad. A solid black window
+        fills those strips.
+    -->
+    <style name="Theme.TurboNDS.Ad" parent="@android:style/Theme.Translucent">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+</resources>

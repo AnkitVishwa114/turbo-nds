@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Turbo NDS</string>
+    <!-- Google's sample AdMob app ID. Replace with the Turbo NDS AdMob app ID before release. -->
+    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+</resources>

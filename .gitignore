@@ -1,0 +1,20 @@
+*.iml
+.gradle/
+.idea/
+build/
+app/build/
+local.properties
+captures/
+
+# Upload key and its password: never commit
+signing/
+*.p12
+*.jks
+*.keystore
+.kotlin/
+.DS_Store
+
+# Private working notes (not part of the source)
+NOTES.md
+NDS_EMULATOR_APP_PLAN.md
+NEW_APP_BLUEPRINT.md

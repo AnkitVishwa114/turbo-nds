@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Turbo NDS icon (concept 9): a white handheld DS with a glowing orange top screen and a turbo bolt. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:translateX="18" android:translateY="18" android:scaleX="0.72" android:scaleY="0.72">
+        <path android:fillColor="#FFFFFF" android:pathData="M24,14H76A8,8 0,0 1 84,22V40A8,8 0,0 1 76,48H24A8,8 0,0 1 16,40V22A8,8 0,0 1 24,14Z" />
+        <path android:fillColor="#FF5A1F" android:pathData="M32,19H68A3,3 0,0 1 71,22V40A3,3 0,0 1 68,43H32A3,3 0,0 1 29,40V22A3,3 0,0 1 32,19Z" />
+        <path android:fillColor="#FFFFFF" android:pathData="M53,21.5L45,30.5H50L47.5,37.5L56,28H51Z" />
+        <path android:fillColor="#C9D0DA" android:pathData="M18,48H82V52H18Z" />
+        <path android:fillColor="#FFFFFF" android:pathData="M23,52H77A9,9 0,0 1 86,61V77A9,9 0,0 1 77,86H23A9,9 0,0 1 14,77V61A9,9 0,0 1 23,52Z" />
+        <path android:fillColor="#1C2030" android:pathData="M41,57H59A3,3 0,0 1 62,60V77A3,3 0,0 1 59,80H41A3,3 0,0 1 38,77V60A3,3 0,0 1 41,57Z" />
+        <path android:fillColor="#1C2030" android:pathData="M23,63H27V67.5H31.5V71.5H27V76H23V71.5H18.5V67.5H23Z" />
+        <path android:fillColor="#1C2030" android:pathData="M73.5,63a2.5,2.5 0,1 0 5.0,0a2.5,2.5 0,1 0 -5.0,0Z" />
+        <path android:fillColor="#FF5A1F" android:pathData="M78.5,69a2.5,2.5 0,1 0 5.0,0a2.5,2.5 0,1 0 -5.0,0Z" />
+        <path android:fillColor="#1C2030" android:pathData="M73.5,75a2.5,2.5 0,1 0 5.0,0a2.5,2.5 0,1 0 -5.0,0Z" />
+        <path android:fillColor="#1C2030" android:pathData="M68.5,69a2.5,2.5 0,1 0 5.0,0a2.5,2.5 0,1 0 -5.0,0Z" />
+    </group>
+</vector>
