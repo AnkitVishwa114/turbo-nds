@@ -25,6 +25,7 @@ import androidx.compose.material.icons.automirrored.rounded.NoteAdd
 import androidx.compose.material.icons.rounded.Folder
 import androidx.compose.material.icons.rounded.HourglassTop
 import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.MailOutline
 import androidx.compose.material.icons.rounded.PrivacyTip
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material.icons.rounded.RemoveCircleOutline
@@ -58,6 +59,7 @@ import kotlinx.coroutines.launch
 /** Public pages on the Turbo NDS website (privacy policy and GPL source code). */
 const val WEBSITE = "https://turbonds.site"
 const val PRIVACY_URL = "$WEBSITE/privacy/"
+const val SUPPORT_EMAIL = "digitalmizer@gmail.com"
 const val SOURCE_URL = "https://github.com/AnkitVishwa114/turbo-nds"
 
 @Composable
@@ -169,7 +171,9 @@ fun SettingsScreen(viewModel: LibraryViewModel, actions: AppActions) {
                 SettingsGroup {
                     SettingsRow(Icons.Rounded.StarRate, "Rate Turbo NDS", null, onClick = { PlayStore.openListing(context) })
                     GroupDivider()
-                    SettingsRow(Icons.Rounded.PrivacyTip, "Privacy policy", null, trailing = { OpenIcon() }, onClick = { open(context, PRIVACY_URL) })
+                    SettingsRow(Icons.Rounded.MailOutline, "Contact support", SUPPORT_EMAIL, onClick = { contactSupport(context) })
+                    GroupDivider()
+                    SettingsRow(Icons.Rounded.PrivacyTip, "Privacy policy", null, onClick = { viewModel.navigate(Screen.PRIVACY) })
                     GroupDivider()
                     SettingsRow(Icons.Rounded.Code, "Source code and licences", null, onClick = { viewModel.navigate(Screen.ABOUT) })
                     GroupDivider()
@@ -177,7 +181,7 @@ fun SettingsScreen(viewModel: LibraryViewModel, actions: AppActions) {
                 }
             }
             item {
-                Text("Not affiliated with Nintendo. No games included.",
+                Text("No games or BIOS included. Nintendo DS is a trademark of Nintendo; Turbo NDS is not affiliated with Nintendo.",
                     style = MaterialTheme.typography.bodySmall, color = TextFaint, modifier = Modifier.padding(horizontal = 4.dp, vertical = 12.dp))
             }
         }
@@ -201,12 +205,60 @@ fun AboutScreen(onBack: () -> Unit) {
             }
             Text("Turbo NDS is open source under GPL-3.0.",
                 style = MaterialTheme.typography.bodyMedium, color = TextMuted)
+            Text("No games or BIOS included. Nintendo DS is a trademark of Nintendo; Turbo NDS is not affiliated with or endorsed by Nintendo.",
+                style = MaterialTheme.typography.bodySmall, color = TextFaint)
             PrimaryButton("Get the source code", { open(context, SOURCE_URL) }, icon = Icons.AutoMirrored.Rounded.OpenInNew, height = 44.dp, modifier = Modifier.fillMaxWidth())
             SettingsGroup {
                 Text(notices, style = MaterialTheme.typography.bodySmall, color = TextMuted, modifier = Modifier.padding(14.dp))
             }
         }
     }
+}
+
+/** Short sections of the privacy policy, the same text as turbonds.site/privacy/. */
+private val privacySections = listOf(
+    "Summary" to "No account or login. Your games, saves and settings stay on your device. The app shows no ads, does not use your advertising ID and does not sell personal information.",
+    "Your games and files" to "You pick folders or files with Android's picker; the app can read only what you pick. It reads game files to show names and icons and copies a game into private storage to play it. Nothing is uploaded.",
+    "Saves and settings" to "In-game saves, save states, play time, favourites and settings are stored only on your device. Cloud backup is off for this data. You can export your saves to a file you choose.",
+    "Google Play" to "Google Play shows the rating sheet and checks for updates. When a newer version is out, the app asks you to install it before you continue. The app never learns your rating.",
+    "Permissions" to "Internet: rating and update checks only; games play offline. Vibration: optional touch feedback. No microphone, camera, contacts, location, calls or SMS.",
+    "Children" to "The app is not directed to children under 13 and does not knowingly collect their information.",
+    "Your choices" to "Clear the app's storage or uninstall it to remove all of its data. Game files in your own folders are never deleted by the app.",
+    "Contact" to "AppKraft Studio · digitalmizer@gmail.com"
+)
+
+@Composable
+fun PrivacyScreen(onBack: () -> Unit) {
+    val context = LocalContext.current
+    Column(Modifier.fillMaxSize().statusBarsPadding()) {
+        ScreenHeader("Privacy policy", onBack)
+        Column(Modifier.fillMaxSize().navigationBarsPadding().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp).padding(bottom = 40.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Text("Last updated 10 November 2026", style = MaterialTheme.typography.bodySmall, color = TextFaint)
+            SettingsGroup {
+                privacySections.forEachIndexed { index, (title, body) ->
+                    Column(Modifier.padding(horizontal = 14.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text(title, style = MaterialTheme.typography.titleMedium, color = TextPrimary)
+                        Text(body, style = MaterialTheme.typography.bodyMedium, color = TextMuted)
+                    }
+                    if (index != privacySections.lastIndex) Box(Modifier.fillMaxWidth().padding(horizontal = 14.dp).height(1.dp).background(Stroke.copy(alpha = 0.5f)))
+                }
+            }
+            SecondaryButton("Open on the website", { open(context, PRIVACY_URL) }, icon = Icons.AutoMirrored.Rounded.OpenInNew, height = 44.dp, modifier = Modifier.fillMaxWidth())
+        }
+    }
+}
+
+/** Opens the mail app with the version and phone model filled in, so replies can help quickly. */
+private fun contactSupport(context: android.content.Context) {
+    val details = "\n\n---\nTurbo NDS ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})\n" +
+        "${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL} · Android ${android.os.Build.VERSION.RELEASE}"
+    val mail = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
+        .putExtra(Intent.EXTRA_EMAIL, arrayOf(SUPPORT_EMAIL))
+        .putExtra(Intent.EXTRA_SUBJECT, "Turbo NDS support")
+        .putExtra(Intent.EXTRA_TEXT, details)
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    // No mail app: open a plain mailto link so the browser or another app can take it.
+    runCatching { context.startActivity(mail) }.onFailure { open(context, "mailto:$SUPPORT_EMAIL") }
 }
 
 private fun open(context: android.content.Context, url: String) {
@@ -258,11 +310,6 @@ private fun SettingsRow(icon: ImageVector, title: String, subtitle: String?, tra
         }
         if (trailing != null) { Spacer(Modifier.width(8.dp)); trailing() }
     }
-}
-
-@Composable
-private fun OpenIcon() {
-    Icon(Icons.AutoMirrored.Rounded.OpenInNew, contentDescription = null, tint = TextFaint, modifier = Modifier.size(18.dp))
 }
 
 @Composable

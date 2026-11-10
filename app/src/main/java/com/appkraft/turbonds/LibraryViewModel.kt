@@ -18,7 +18,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-enum class Screen { HOME, LIBRARY, SETTINGS, ABOUT }
+enum class Screen { HOME, LIBRARY, SETTINGS, ABOUT, PRIVACY }
 enum class LibraryTab { ALL, RECENT, FAVORITES }
 enum class SortOrder { RECENT, NAME, PLAY_TIME }
 

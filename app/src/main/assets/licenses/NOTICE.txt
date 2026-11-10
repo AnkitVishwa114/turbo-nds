@@ -12,6 +12,7 @@ https://github.com/JesseTG/melonds-ds
 Includes emulation based on melonDS. Uses the core's built-in replacement system files.
 
 No console BIOS, firmware or game is included with this app.
+"Nintendo DS" is a trademark of Nintendo. Turbo NDS is not affiliated with or endorsed by Nintendo.
 
 AndroidX and Material components: Apache-2.0.
 Kotlin and kotlinx.coroutines: Apache-2.0.

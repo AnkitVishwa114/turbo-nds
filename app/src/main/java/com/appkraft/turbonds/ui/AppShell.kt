@@ -104,7 +104,7 @@ fun TurboApp(viewModel: LibraryViewModel) {
     )
 
     BackHandler(enabled = state.screen != Screen.HOME) {
-        viewModel.navigate(if (state.screen == Screen.ABOUT) Screen.SETTINGS else Screen.HOME)
+        viewModel.navigate(if (state.screen == Screen.ABOUT || state.screen == Screen.PRIVACY) Screen.SETTINGS else Screen.HOME)
     }
 
     LaunchedEffect(state.notice) {
@@ -188,10 +188,11 @@ fun TurboApp(viewModel: LibraryViewModel) {
                             Screen.LIBRARY -> LibraryScreen(viewModel, actions)
                             Screen.SETTINGS -> SettingsScreen(viewModel, actions)
                             Screen.ABOUT -> AboutScreen(onBack = { viewModel.navigate(Screen.SETTINGS) })
+                            Screen.PRIVACY -> PrivacyScreen(onBack = { viewModel.navigate(Screen.SETTINGS) })
                         }
                     }
                 }
-                if (state.screen != Screen.ABOUT) BottomBar(state.screen) { viewModel.navigate(it) }
+                if (state.screen != Screen.ABOUT && state.screen != Screen.PRIVACY) BottomBar(state.screen) { viewModel.navigate(it) }
             }
         }
 
