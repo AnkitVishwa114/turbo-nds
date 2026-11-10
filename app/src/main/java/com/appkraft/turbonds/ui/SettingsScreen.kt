@@ -58,7 +58,7 @@ import kotlinx.coroutines.launch
 /** Public pages on the Turbo NDS website (privacy policy and GPL source code). */
 const val WEBSITE = "https://turbonds.site"
 const val PRIVACY_URL = "$WEBSITE/privacy/"
-const val SOURCE_URL = "$WEBSITE/source/"
+const val SOURCE_URL = "https://github.com/AnkitVishwa114/turbo-nds"
 
 @Composable
 fun SettingsScreen(viewModel: LibraryViewModel, actions: AppActions) {
